@@ -3,7 +3,12 @@
 require('dotenv').config({ path: `${ process.cwd() }/.env` })
 
 const { Sequelize, DataTypes } = require('sequelize')
-const models = [ require('./models/invite.js'), require('./models/message.js') ]
+
+const models = [ 
+  require('./models/invite.js'), 
+  require('./models/message.js'),
+  require('./models/user.js')
+]
 
 const env = process.env.NODE_ENV || 'dev'
 

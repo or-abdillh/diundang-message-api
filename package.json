@@ -4,7 +4,8 @@
   "description": "Manage API for delivery message feature of Diundang Wedding Invitation Product",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "migrate:up": "npx sequelize-cli db:migrate"
   },
   "repository": {
     "type": "git",

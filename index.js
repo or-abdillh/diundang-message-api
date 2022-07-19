@@ -3,15 +3,21 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
+const path = require('path')
 const PORT = 3000
 const database = require('./src/database')
+const web = require('./src/router/web.js')
 
 // Setup
 const app = express()
 app.use( bodyParser.urlencoded({ extended: true }) )
 app.use( bodyParser.json() )
 app.use( cors() )
+app.set('views', path.join(__dirname, 'src/views'))
 app.set( 'view engine', 'ejs' )
+
+// Setup router
+web(app)
 
 // Database connection
 const dbPrepareConnection = async () => {
