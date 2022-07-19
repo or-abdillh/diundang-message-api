@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../partials/navbar.ejs') %>
+  <%- include('../partials/head.ejs', { url }) %>
+  <body>
+    <main class="container-md px-4 mb-5" style="margin-top: 6rem">
+      <section class="mb-5 px-2">
+        <p class="text-primary h3">
+          <i class="fa-solid fa-thumbs-up"></i>
+          Manage your new invite ID here</p>
+        <small> 
+          Now, you can access this resources for create service to delivery message from <strong class="text-primary">Digital Wedding Invitation</strong>
+        </small>
+      </section>
+
+      <!-- Credentials -->
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <p class="text-primary my-1 h5">Title</p>
+          <small><%= data.title %></small>
+        </li>
+        <li class="list-group-item">
+          <p class="text-primary my-1 h5">Endpoint</p>
+          <small>http://<%= url %>/message/<%= data.id %></small>
+        </li>
+        <li class="list-group-item">
+          <p class="text-primary my-1 h5">Token</p>
+          <small class="text-break"><%= data.token %></small>
+        </li>
+        <li class="list-group-item">
+          <p class="text-primary my-1 h5">Created At</p>
+          <small class="text-break"><%= new Date(data.createdAt).toLocaleString() %></small>
+        </li> 
+        <li class="list-group-item">
+          <p class="text-primary my-1 h5">Actions</p>
+          <a href="<%= `http://${ url }/invite/destroy/${ data.id }` %>" class="btn btn-danger btn-sm mt-2">
+            <i class="fa-solid fa-times"></i>
+            Destroy Invite ID
+          </a>
+          <a href="<%= `http://${ url }/message/${ data.id }` %>" class="btn btn-success btn-sm mt-2">
+            <i class="fa-solid fa-comments"></i>
+            Manage Messages
+          </a>
+        </li>
+      </ul>
+    </main>
+  </body>
+</html>

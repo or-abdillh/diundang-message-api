@@ -16,7 +16,8 @@ module.exports = (sequelize, DataTypes) => {
   }
 
   Invite.init({
-    endpoint: DataTypes.STRING
+	 title: DataTypes.STRING,
+    token: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'invite',

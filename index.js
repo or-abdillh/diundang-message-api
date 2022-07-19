@@ -15,6 +15,7 @@ app.use( bodyParser.json() )
 app.use( cors() )
 app.set('views', path.join(__dirname, 'src/views'))
 app.set( 'view engine', 'ejs' )
+app.use( '/public', express.static( path.join(process.cwd(), '/public') ) )
 
 // Setup router
 web(app)

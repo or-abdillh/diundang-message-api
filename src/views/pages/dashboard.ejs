@@ -1,8 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('../partials/head.ejs') %>
+  <%- include('../partials/head.ejs', { url: headers.host }) %>
   <body>
-	 <p class="btn btn-primary">Hello</p>
+    <%- include('../partials/jumbotron.ejs') %>
+    <!-- Create New Invite ID -->
+    <section class="container-md px-4 my-5">
+      <div class="d-flex justify-content-between">
+        <p class="h5 text-primary">Create New Invite</p>
+        <i class="fa-solid fa-chevron-down btn btn-light text-primary"></i>
+      </div>
+      <form action="http://<%= headers.host %>/invite" method="POST" class="mt-3">
+        <!-- Title -->
+        <div class="mb-3">
+          <input type="text" name="title" placeholder="Type the title" class="form-control" required>
+          <div class="form-text">The title can be use as a description for your invite ID</div>
+        </div>
+        <!-- Submit -->
+        <button type="submit" class="btn btn-primary w-full">
+          <i class="fa-solid fa-plus"></i>
+          Create New Invite ID
+        </button>
+      </form>
+    </section>
   </body>
 </html>
 

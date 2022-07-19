@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../partials/head.ejs', { url }) %>
+  <body>
+    <%- include('../partials/navbar.ejs') %>
+    <main class="container-md px-4" style="margin-top: 6rem">
+      <section class="container-md mb-5">
+        <p>Showing <%= messages.length %> messages from <strong class="text-primary">invite ID <%= invite_id %></strong></p>
+      </section>
+      <% if ( messages.length > 0 ) { %>
+
+        <ul class="list-group list-group-flush">
+          <% messages.forEach( message => { %>
+
+            <li class="list-group-item mb-3">
+              <strong><%= message.presence ? 'akan hadir' : 'tidak hadir' %> - <%= message.writer %></strong>
+              <div class="d-flex justify-content-between gap-3">
+                <small class="text-wrap w-10/12"><%= message.content %></small>
+                <span><a href="<%= `http://${ url }/message/destroy/${ invite_id }/${ message.id }` %>" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a></span>
+              </div>
+              <small class="text-secondary">at <%= new Date(message.createdAt).toLocaleString()%></small>
+            </li>
+
+          <% }) %>
+        </ul>
+      <% } else { %>
+            <div class="w-full text-center">
+              <p class="h3 text-primary">Empty Message</p>
+              <small>Dont worry, its normal</small>
+            </div>
+      <% } %>
+    </main>
+  </body>
+</html>
