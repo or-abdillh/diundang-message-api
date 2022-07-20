@@ -7,6 +7,14 @@ const jwt = require('jsonwebtoken')
 
 module.exports = {
 
+  async index() {
+    // Get all invites
+    try {
+      const invites = await invite.findAll()
+      return invites
+    } catch(err) { res.render('501.ejs'), { err } }
+  },
+
   async createInvite(req, res) {
     // Get title input
     const { title } = req.body
@@ -35,5 +43,14 @@ module.exports = {
       await invite.destroy({ where: { id } })
       res.redirect('/')
     } catch(err) { res.render('501.ejs', { err }) }
+  },
+
+  async getInviteDetail(req, res) {
+    // Get params
+    const { id } = req.params
+    try {
+      const selected = await invite.findOne({ where: { id } })
+      res.render('pages/invite.ejs', { data: selected, url: req.headers.host })
+    } catch( err ) { res.render('501.ejs', { err }) }
   }
 }

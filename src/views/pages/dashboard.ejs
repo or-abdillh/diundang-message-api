@@ -22,6 +22,32 @@
         </button>
       </form>
     </section>
+    <!-- All Invites -->
+    <section class="container-md px-4">
+      <p>Showing <%= invites.length %> invite ID</p>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">NO</th>
+            <th scope="col">TITLE</th>
+            <th scope="col">ENDPOINT</th>
+            <th scope="col">ACTION</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for ( const invite of invites ) { %>
+            <tr>
+              <td><%= nums++ %></td>
+              <td><%= invite.title %></td>
+              <td class="text-break">http://<%= headers.host %>/message/<%= invite.id %></td>
+              <td>
+                <a class="btn btn-primary" href="<%= `http://${ headers.host }/invite/${ invite.id }` %>"><i class="fa-solid fa-eye"></i>Detail</a>
+              </td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </section>
   </body>
 </html>
 

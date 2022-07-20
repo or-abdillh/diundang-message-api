@@ -13,6 +13,7 @@ module.exports = app => {
   //Invite
   app.route('/invite').post( InviteController.createInvite )
   app.route('/invite/destroy/:id').get( InviteController.destroyInvite )
+  app.route('/invite/:id').get( InviteController.getInviteDetail )
 
   //Message
   app.route('/message/:invite_id').get( MessageController.index )

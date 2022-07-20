@@ -1,10 +1,11 @@
 'use strict'
 
 const { user } = require('../database').models
+const InviteController = require('./InviteController.js')
 
 module.exports = {
   
-  index(req, res) {
-    res.render('pages/dashboard.ejs', { headers: req.headers })
+  async index(req, res) {
+    res.render('pages/dashboard.ejs', { headers: req.headers, invites: await InviteController.index(), nums: 1 })
   }
 }
