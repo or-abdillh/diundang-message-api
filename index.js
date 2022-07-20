@@ -1,13 +1,17 @@
 'use strict'
 
+require('dotenv').config({ path: process.cwd() + '/.env' })
+
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const path = require('path')
+const session = require('express-session')
 const PORT = 3000
 const database = require('./src/database')
 const web = require('./src/router/web.js')
 const api = require('./src/router/api.js')
+const authentication = require('./src/middlewares/authentication.js')
 
 // Setup
 const app = express()
@@ -17,6 +21,19 @@ app.use( cors() )
 app.set('views', path.join(__dirname, 'src/views'))
 app.set( 'view engine', 'ejs' )
 app.use( '/public', express.static( path.join(process.cwd(), '/public') ) )
+app.use(
+  session({
+    secret: process.env.SESSION_KEY,
+    saveUninitialized: true,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 },
+    resave: false
+  })
+)
+
+// middlewares
+const paths = ['/', '/invite', '/message']
+app.use( paths, authentication )
+
 
 // Setup router
 web(app)

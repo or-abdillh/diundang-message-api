@@ -11,7 +11,7 @@ module.exports = {
   },
 
   async login(req, res) {
-    res.render('pages/login.ejs', { url: req.headers.host }, { err: false })
+    res.render('pages/login.ejs', { url: req.headers.host, err: false })
   },
 
   async userLogin(req, res) {
@@ -20,7 +20,13 @@ module.exports = {
 
     try {
       const selected = await user.findOne({ where: { username, password: md5(password) } })
-      if ( selected ) res.redirect('/')
+      if ( selected ) {
+        // Create session
+        const session = req.session
+        session.isLogin = true
+        // redirect
+        res.redirect('/')
+      }
       else res.render('pages/login.ejs', { url: req.headers.host, err: true })
     } catch( err ) { res.render('501.ejs'), { err } }  
   }
