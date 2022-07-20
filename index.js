@@ -34,7 +34,6 @@ app.use(
 const paths = ['/', '/invite', '/message']
 app.use( paths, authentication )
 
-
 // Setup router
 web(app)
 api(app)
