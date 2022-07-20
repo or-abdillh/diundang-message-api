@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../partials/head.ejs') %>
+  <body>
+    <main class="container-md my-5">
+      <% if ( err ) { %>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <strong>Login failed!</strong> Check your username or password
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <% }%>
+
+      <form action="" method="post" class="p-4 card bg-light shadow">
+        <h3 class="text-primary text-center">Login</h3>
+        <!-- Username -->
+        <div class="mb-3">
+          <label for="username" class="text-dark">Username</label>
+          <input type="text" name="username" placeholder="Your username" class="form-control bg-light" required>
+        </div>
+        <!-- Password -->
+        <div class="mb-3">
+          <label for="password" class="text-dark">Password</label>
+          <input type="password" name="password" placeholder="Your password" class="form-control" required>
+        </div>
+        <button type="submit" name="login" class="btn btn-primary">Login</button>
+      </form>
+    </main>
+  </body>
+</html>

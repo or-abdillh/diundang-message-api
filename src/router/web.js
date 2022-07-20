@@ -7,8 +7,11 @@ const MessageController = require('../controllers/MessageController.js')
 
 module.exports = app => {
 
-  // Dashboard
+  // Dashboard & Login
   app.route('/').get( UserController.index )
+  app.route('/login')
+    .get( UserController.login )
+    .post( UserController.userLogin )
   
   //Invite
   app.route('/invite').post( InviteController.createInvite )
