@@ -7,6 +7,7 @@ const path = require('path')
 const PORT = 3000
 const database = require('./src/database')
 const web = require('./src/router/web.js')
+const api = require('./src/router/api.js')
 
 // Setup
 const app = express()
@@ -19,6 +20,7 @@ app.use( '/public', express.static( path.join(process.cwd(), '/public') ) )
 
 // Setup router
 web(app)
+api(app)
 
 // Database connection
 const dbPrepareConnection = async () => {
