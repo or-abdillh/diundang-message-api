@@ -16,6 +16,15 @@ module.exports = {
       res.render('pages/messages', { messages, url: req.headers.host, invite_id })
     } catch(err) { res.render('501.ejs', { err }) }
   },
+  
+  async apiIndex(req, res) {
+    const { invite_id } = req.params
+
+    try {
+      const messages = await message.findAll({ where: { invite_id } })
+      success({ messages }, res)
+    } catch(err) { internalServerError(err, res) }
+  },
 
   async destroyMessage(req, res) {
     // Get params
