@@ -16,7 +16,7 @@
               <strong><%= message.presence ? 'akan hadir' : 'tidak hadir' %> - <%= message.writer %></strong>
               <div class="d-flex justify-content-between gap-3">
                 <small class="text-wrap w-10/12"><%= message.content %></small>
-                <span><a href="<%= `http://${ url }/message/destroy/${ invite_id }/${ message.id }` %>" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a></span>
+                <span><a href="/message/destroy/<% `${ invite_id }/${ message.id }` %>" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a></span>
               </div>
               <small class="text-secondary">at <%= new Date(message.createdAt).toLocaleString()%></small>
             </li>

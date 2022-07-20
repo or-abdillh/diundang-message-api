@@ -33,11 +33,11 @@
         </li> 
         <li class="list-group-item">
           <p class="text-primary my-1 h5">Actions</p>
-          <a href="<%= `http://${ url }/invite/destroy/${ data.id }` %>" class="btn btn-danger btn-sm mt-2">
+          <a href="/invite/destroy/<%= data.id %>" class="btn btn-danger btn-sm mt-2">
             <i class="fa-solid fa-times"></i>
             Destroy Invite ID
           </a>
-          <a href="<%= `http://${ url }/message/${ data.id }` %>" class="btn btn-success btn-sm mt-2">
+          <a href="/message/<%= data.id %>" class="btn btn-success btn-sm mt-2">
             <i class="fa-solid fa-comments"></i>
             Manage Messages
           </a>
